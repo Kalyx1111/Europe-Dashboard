@@ -223,3 +223,10 @@ MARKERS = [
     {"id": "gibraltar", "name": "Gibraltar (UK territory, claimed by Spain)", "lat": 36.1400, "lon": -5.3500, "cat": "flashpoint",
      "aliases": ["gibraltar"], "note": "British Overseas Territory that Spain claims (public information).", "source": "public information (sovereignty disputed)"},
 ]
+
+# India rule (shared guard): nothing is plotted inside India's survey outline.
+try:
+    from .india_guard import clean_points as _india_points
+except ImportError:  # run as a plain script
+    from india_guard import clean_points as _india_points
+MARKERS = _india_points(MARKERS)
